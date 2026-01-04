@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: backend
+    container_name: mpm-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/var
+      - /var/www/html/vendor
+      - /var/www/html/public/bundles
+    environment:
+      DATABASE_URL: mysql://root:password@db:3306/mpm
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4
+    container_name: mpm-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mpm
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
