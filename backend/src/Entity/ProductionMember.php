@@ -24,7 +24,7 @@ class ProductionMember
     private ?User $person = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    private ?string $crewPosition = null;
 
     public function getId(): ?int
     {
@@ -55,14 +55,14 @@ class ProductionMember
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getCrewPosition(): ?string
     {
-        return $this->role;
+        return $this->crewPosition;
     }
 
-    public function setRole(string $role): static
+    public function setCrewPosition(string $crewPosition): static
     {
-        $this->role = $role;
+        $this->crewPosition = $crewPosition;
 
         return $this;
     }
